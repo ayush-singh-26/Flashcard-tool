@@ -9,13 +9,22 @@ dotenv.config({
 
 const app = express();
 app.use(cors());
+
+// Alternatively, you can specify specific origins
+// const corsOptions = {
+//     origin: 'https://your-frontend-domain.com',
+//     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//     credentials: true,
+//     optionsSuccessStatus: 204
+// };
+// app.use(cors(corsOptions));
 app.use(express.json());
 
 const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
+  host: process.env.host,
+  user: process.env.user,
   password: process.env.password,
-  database: 'flashcards_db'
+  database: process.env.database,
 });
 
 db.connect(err => {
