@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { baseUrl } from '../Url';
 
 function Dashboard() {
     const [flashcards, setFlashcards] = useState([]);
@@ -9,7 +10,7 @@ function Dashboard() {
     const [isSubmitted, setIsSubmitted] = useState(false); // Track form submission
 
     useEffect(() => {
-        axios.get('http://localhost:5000/api/flashcards')
+        axios.get(`${baseUrl}/api/flashcards`)
             .then(response => setFlashcards(response.data))
             .catch(error => setError('Failed to load flashcards. Please try again later.'));
     }, []);
@@ -37,7 +38,7 @@ function Dashboard() {
     };
 
     const addFlashcard = () => {
-        axios.post('http://localhost:5000/api/flashcards', newCard)
+        axios.post(`${baseUrl}/api/flashcards`, newCard)
             .then(response => {
                 setFlashcards([...flashcards, response.data]);
                 setNewCard({ question: '', answer: '' });
@@ -47,7 +48,7 @@ function Dashboard() {
     };
 
     const deleteFlashcard = (id) => {
-        axios.delete(`http://localhost:5000/api/flashcards/${id}`)
+        axios.delete(`${baseUrl}/api/flashcards/${id}`)
             .then(() => {
                 setFlashcards(flashcards.filter(card => card.id !== id));
             })
@@ -56,7 +57,7 @@ function Dashboard() {
 
     const updateFlashcard = () => {
         if (editCard) {
-            axios.put(`http://localhost:5000/api/flashcards/${editCard.id}`, editCard)
+            axios.put(`${baseUrl}/api/flashcards/${editCard.id}`, editCard)
                 .then(response => {
                     setFlashcards(flashcards.map(card => (card.id === editCard.id ? response.data : card)));
                     setEditCard(null);

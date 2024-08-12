@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import FlashcardList from '../components/FlashcardList';
 import axios from 'axios';
+import { baseUrl } from '../Url';
 
 function Home() {
   const [flashcards, setFlashcards] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/flashcards')
+    axios.get(`${baseUrl}/api/flashcards`)
       .then(response => {
         setFlashcards(response.data);
       })

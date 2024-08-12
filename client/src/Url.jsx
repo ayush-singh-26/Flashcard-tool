@@ -1,0 +1,1 @@
+export const baseUrl="https://flashcard-backend-9d30.onrender.com"
