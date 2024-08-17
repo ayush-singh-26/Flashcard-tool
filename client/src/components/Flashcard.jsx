@@ -9,7 +9,7 @@ function Flashcard({ flashcard }) {
     };
 
     return (
-        <div className="relative w-[520px] mx-auto my-5 text-center" style={{ perspective: '1000px' }}>
+        <div className="relative w-[420px] mx-auto my-5 text-center" style={{ perspective: '1000px' }}>
             <div
                 className={`relative w-full h-[300px] transition-transform duration-700 ease-in-out cursor-pointer`}
                 onClick={handleClick}
